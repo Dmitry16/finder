@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import MatchesList from './MatchesList';
+import ListItem from './ListItem';
+import { findMatch } from '../utils';
 import { api } from '../api';
 // import { flex } from '../common/styles';
 
@@ -14,14 +15,14 @@ const Input = styled.input`
 
 interface Props {
   initialValue: string;
-  findMatch: (inputValue: string, data: string[]) => string[];
+  clickHandler: (value: string) => void;
 }
 interface State {
   showMatchesList?: boolean,
   matches?: string[]
 }
 
-const Dropdown: React.FC<Props> = ({ initialValue, findMatch }) => {
+const Dropdown: React.FC<Props> = ({ initialValue, clickHandler }) => {
 
   const [inputValue, setInputValue] = useState(initialValue);
 
@@ -53,9 +54,9 @@ const Dropdown: React.FC<Props> = ({ initialValue, findMatch }) => {
       Start typing your search in:
       <Input type='text' name='dropdown' value={inputValue} onChange={changeHandler} />
       {
-        showMatchesList && matches.length &&
+        showMatchesList && !!matches.length &&
           matches.map((match: string, ind: number) =>
-            <MatchesList key={ind} match={match} />)
+            <ListItem clickHandler={clickHandler} key={ind} match={match} />)
       }
     </Fragment>
   );

@@ -6,7 +6,7 @@ const List = styled.ul`
   text-align: center;
   list-style-type: circle;
 `
-const ListItem = styled.li`
+const Li = styled.li`
   text-align: center;
   cursor: pointer;
   &:hover {
@@ -15,17 +15,16 @@ const ListItem = styled.li`
 `
 
 interface Props {
-  match: string,
-  key: number
+  match: string;
+  key: number;
+  clickHandler: (match: string) => void;
 }
 
-const MatchesList: React.FC<Props> = (props: Props) => {
+const ListItem: React.FC<Props> = (props: Props) => {
 
   return (
-    <List>
-      <ListItem >{ props.match }</ListItem>
-    </List>
+      <Li onClick={() => props.clickHandler(props.match)}>{ props.match }</Li>
   )
 }
 
-export default MatchesList;
+export default ListItem;

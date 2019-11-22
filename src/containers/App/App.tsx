@@ -3,7 +3,6 @@ import Dropdown from '../../components/Dropdown';
 import styled from 'styled-components';
 import ErrorBoundary from '../ErrorBoundary';
 import { flex, font, height } from '../../common/styles';
-import { findMatch } from '../../utils';
 import { api } from '../../api';
 
 const Header = styled.header`
@@ -30,9 +29,13 @@ const Container = styled.div`
 `
 
 const App: React.FC = () => {
-  
+
   const { data } = api;
   const dropdownInitialValue = data && data[0];
+
+  const clickHandler = (value: string) => {
+    console.log('clickHandler!!', value)
+  }
 
   return (
     <ErrorBoundary>
@@ -43,7 +46,7 @@ const App: React.FC = () => {
           </p>
         </Header>
         <Section>
-          <Dropdown initialValue={dropdownInitialValue} findMatch={findMatch} />
+          <Dropdown initialValue={dropdownInitialValue} clickHandler={clickHandler} />
         </Section>
         <Footer />
       </Container>
