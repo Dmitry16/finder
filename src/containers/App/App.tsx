@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown from '../../components/Dropdown';
 import styled from 'styled-components';
 import ErrorBoundary from '../ErrorBoundary';
-import { Container, flex, font, height } from '../../common/styles';
+import { flex, font, height } from '../../common/styles';
 
 const Header = styled.header`
   background-color: #282c34;
@@ -23,6 +23,10 @@ const Footer = styled.footer`
   ${font}
   ${flex}
 `
+const Container = styled.div`
+  text-align: center;
+`
+
 const dropdownInitialValue = 'red';
 
 const App: React.FC = () => {
