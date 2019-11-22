@@ -3,6 +3,8 @@ import Dropdown from '../../components/Dropdown';
 import styled from 'styled-components';
 import ErrorBoundary from '../ErrorBoundary';
 import { flex, font, height } from '../../common/styles';
+import { findMatch } from '../../utils';
+import { api } from '../../api';
 
 const Header = styled.header`
   background-color: #282c34;
@@ -27,13 +29,10 @@ const Container = styled.div`
   text-align: center;
 `
 
-const dropdownInitialValue = 'red';
-
 const App: React.FC = () => {
-
-  const dropdownEventHandler = () => {
-    console.log('dropdownEventHandler');
-  }
+  
+  const { data } = api;
+  const dropdownInitialValue = data && data[0];
 
   return (
     <ErrorBoundary>
@@ -44,7 +43,7 @@ const App: React.FC = () => {
           </p>
         </Header>
         <Section>
-          <Dropdown value={dropdownInitialValue} handler={dropdownEventHandler} />
+          <Dropdown initialValue={dropdownInitialValue} findMatch={findMatch} />
         </Section>
         <Footer />
       </Container>

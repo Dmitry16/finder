@@ -13,8 +13,9 @@ describe('<Dropdown />', () => {
   // const useStateSpy = jest.spyOn(React, 'useState')
   // useStateSpy.mockImplementation((init) => [init, setState]);
 
+  wrapper = shallow(<Dropdown initialValue={'zz'} findMatch={() => {}} />);
+
   beforeEach(() => {
-    wrapper = shallow(<Dropdown />);
   });
   afterEach(() => {
     jest.clearAllMocks();
@@ -22,7 +23,7 @@ describe('<Dropdown />', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Dropdown />, div);
+    ReactDOM.render(<Dropdown initialValue={'zz'} findMatch={() => {}} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
   // it('renders determined layout', () => {

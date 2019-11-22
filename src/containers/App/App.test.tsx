@@ -29,8 +29,17 @@ describe('<App />', () => {
   it('renders determined layout', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it('renders the Dropdown component', () => {
+  it('renders Dropdown component', () => {
     expect(wrapper.find('Dropdown').length).toEqual(1);
+  });
+  it('Dropdown component is been passed 2 props', () => {
+    expect('initialValue' in wrapper.find('Dropdown').props()).toBe(true);
+  });
+  it('Dropdown component is been passed initialValue prop', () => {
+    expect('initialValue' in wrapper.find('Dropdown').props()).toBe(true);
+  });
+  it('Dropdown component is been passed findMatch prop', () => {
+    expect('findMatch' in wrapper.find('Dropdown').props()).toBe(true);
   });
   // console.log(wrapper.debug());
 });

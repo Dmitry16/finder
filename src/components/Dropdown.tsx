@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { api } from '../api';
 // import { flex } from '../common/styles';
 
 const Input = styled.input`
@@ -11,16 +12,38 @@ const Input = styled.input`
 `
 
 interface Props {
-  value: string;
-  handler: () => void;
+  initialValue: string;
+  findMatch: (inputValue: string, data: string[]) => string[];
 }
 
-const Dropdown: React.FC<Props> = ({ value, handler }) => {
+const Dropdown: React.FC<Props> = ({ initialValue, findMatch }) => {
+
+  const [inputValue, setInputValue] = useState(initialValue);
+
+  const [state, setState] = useState({});
+
+  const { data } = api;
+
+  console.log('state::', state)
+
+  
+
+  useEffect(() => {
+    const matches = findMatch(inputValue, data);
+    setState({
+      ...state,
+      matches
+    })
+  }, [inputValue, findMatch]);
+
+  const changeHandler = (event: any) => {
+    setInputValue(event.target.value);
+  }
 
   return (
     <Fragment>
       Start typing your search in:
-      <Input type='text' name='dropdown' value={value} onChange={handler} />
+      <Input type='text' name='dropdown' value={inputValue} onChange={changeHandler} />
     </Fragment>
   );
 }
