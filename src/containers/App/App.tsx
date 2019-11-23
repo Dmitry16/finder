@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dropdown from '../../components/Dropdown';
 import styled from 'styled-components';
 import ErrorBoundary from '../ErrorBoundary';
@@ -30,11 +30,16 @@ const Container = styled.div`
 
 const App: React.FC = () => {
 
+  const [selectedOption, setSelectedOption] = useState('');
+
   const { data } = api;
-  const dropdownInitialValue = data && data[0];
+  const initialValue = selectedOption || data && data[0];
+
+  console.log('initialValue:', initialValue);
 
   const clickHandler = (value: string) => {
-    console.log('clickHandler!!', value)
+    setSelectedOption(value)
+    // console.log('clickHandler!!', value)
   }
 
   return (
@@ -49,7 +54,7 @@ const App: React.FC = () => {
           <Dropdown
             listBlockHeight={5}
             clickHandler={clickHandler}
-            initialValue={dropdownInitialValue}
+            initialValue={initialValue}
           />
         </Section>
         <Footer />
