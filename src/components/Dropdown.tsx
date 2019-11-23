@@ -2,8 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 import { findMatch } from '../utils';
-import { api } from '../api';
-// import { flex } from '../common/styles';
+import { data } from '../data';
 
 const Input = styled.input`
   margin: 3em;
@@ -19,37 +18,33 @@ const List = styled.ul`
 `
 interface Props {
   listBlockHeight: number;
-  initialValue: string;
+  passedValue: string;
   clickHandler: (value: string) => void;
 }
-interface State {
-  displayMatchesList?: boolean,
-  matches?: string[]
-}
 
-const Dropdown: React.FC<Props> = ({ initialValue, clickHandler, listBlockHeight }) => {
-
-  const [inputValue, setInputValue] = useState(initialValue);
+const Dropdown: React.FC<Props> = ({ passedValue, clickHandler, listBlockHeight }) => {
 
   const [state, setState] = useState({
+    inputValue: passedValue,
     displayMatchesList: false,
     matches: ['']
   });
 
-  const { data } = api;
-
-  console.log('state::', state)
-
   useEffect(() => {
     setState({
       ...state,
-      displayMatchesList: true,
-      matches: findMatch(inputValue, data)
+      inputValue: passedValue,
     })
-  }, [inputValue, findMatch]);
-
+  }, [passedValue]);
+  
   const changeHandler = (event: any) => {
-    setInputValue(event.target.value);
+    const { value } = event.target;
+    setState({
+      ...state,
+      displayMatchesList: true,
+      inputValue: value,
+      matches: findMatch(value, data)
+    });
   }
 
   const { displayMatchesList, matches} = state;
@@ -57,7 +52,7 @@ const Dropdown: React.FC<Props> = ({ initialValue, clickHandler, listBlockHeight
   return (
     <Fragment>
       Start typing your search in:
-      <Input type='text' name='dropdown' value={inputValue} onChange={changeHandler} />
+      <Input type='text' name='dropdown' value={state.inputValue} onChange={changeHandler} />
       <List>
         {
           displayMatchesList && matches.length &&
