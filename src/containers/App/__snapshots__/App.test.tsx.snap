@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App /> renders determined layout 1`] = `ShallowWrapper {}`;
+exports[`<App /> renders determined layout 1`] = `"<div class=\\"sc-bZQynM hJohEA\\"><header class=\\"sc-bxivhb bQsenN\\"><p>Welcome to the awsome App! :)</p></header><section class=\\"sc-ifAKCX leNdHE\\">Type in your search term then select an option from the list:<input type=\\"text\\" name=\\"dropdown\\" value=\\"react\\" class=\\"sc-bwzfXH dKDNGw\\"/><ul class=\\"sc-htpNat hXEaPD\\"></ul></section><footer class=\\"sc-EHOje leHFRV\\"></footer></div>"`;

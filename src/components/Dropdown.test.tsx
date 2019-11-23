@@ -9,13 +9,12 @@ import Dropdown from './Dropdown';
 
 describe('<Dropdown />', () => {
   let wrapper: any;
-  const setState = jest.fn();
-  // const useStateSpy = jest.spyOn(React, 'useState')
-  // useStateSpy.mockImplementation((init) => [init, setState]);
-
-  wrapper = shallow(<Dropdown initialValue={'zz'} findMatch={() => {}} />);
-
   beforeEach(() => {
+    wrapper = mount(<Dropdown
+      passedValue={''}
+      clickHandler={() => {}}
+      listBlockHeight={5}
+    />);
   });
   afterEach(() => {
     jest.clearAllMocks();
@@ -23,12 +22,19 @@ describe('<Dropdown />', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Dropdown initialValue={'zz'} findMatch={() => {}} />, div);
+    ReactDOM.render(<Dropdown 
+      passedValue={''}
+      clickHandler={() => {}}
+      listBlockHeight={5}
+    />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  // it('renders determined layout', () => {
-  //   expect(wrapper).toMatchSnapshot();
-  // });
-
+  it('renders determined layout', () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+  it('has an input', () => {
+    expect(wrapper.find('input').length).toBe(1);
+  });
+  // console.log(wrapper.debug());
 });
 

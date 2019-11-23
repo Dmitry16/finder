@@ -33,7 +33,7 @@ const config = {
 }
 
 const App: React.FC = () => {
-
+  // the application state. it is passed to Dropdown as passedValue prop 
   const [selectedOption, setSelectedOption] = useState('');
   // value to be passed to the Dropdown component
   // if no option were selected the initial value is passed

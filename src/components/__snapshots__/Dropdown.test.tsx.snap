@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> renders determined layout 1`] = `"Type in your search term then select an option from the list:<input type=\\"text\\" name=\\"dropdown\\" class=\\"sc-bwzfXH dKDNGw\\" value=\\"\\"><ul class=\\"sc-htpNat hXEaPD\\"></ul>"`;

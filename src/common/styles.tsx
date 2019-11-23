@@ -14,5 +14,5 @@ export const font = `
   color: black;
 `
 export const height = `
-  min-height: 33vh;
+  min-height: 33.33vh;
 `

@@ -6,11 +6,12 @@ import { data } from '../data';
 
 const Input = styled.input`
   margin: 1em;
+  padding: 0 0.5em;
   height: 1.5em;
   font-size: 1em;
   background: khaki;
   color: blue;
-  border: 2px solid palevioletred;
+  border: 2px solid green;
   border-radius: 3px;
 `
 const List = styled.ul`
@@ -49,12 +50,12 @@ const Dropdown: React.FC<Props> = ({ passedValue, clickHandler, listBlockHeight 
       matches: findMatch(value, data)
     });
   }
-  
+
   const { displayMatchesList, matches} = state;
 
   return (
     <Fragment>
-      Start typing your search in:
+      Type in your search term then select an option from the list:
       <Input type='text' name='dropdown' value={state.inputValue} onChange={changeHandler} />
       <List>
         {
