@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Dropdown from '../../components/Dropdown';
 import styled from 'styled-components';
 import ErrorBoundary from '../ErrorBoundary';
+import Dropdown from '../../components/Dropdown';
 import { flex, font, height } from '../../common/styles';
 import { data } from '../../data';
 
@@ -27,14 +27,20 @@ const Footer = styled.footer`
 const Container = styled.div`
   text-align: center;
 `
+const config = {
+  // the number of lines of the Dropdown's list block to be displayed
+  listBlockHeight: 5
+}
 
 const App: React.FC = () => {
 
   const [selectedOption, setSelectedOption] = useState('');
-
+  // value to be passed to the Dropdown component
+  // if no option were selected the initial value is passed
   const initialValue = data && data[0];
-  const passedValue = selectedOption || initialValue;
-
+  const valueToPass = selectedOption || initialValue;
+  // handler to process the click on a dropdown's displayed option
+  // it's a callback which is passed down to the child as a prop
   const clickHandler = (clickedOption: string) => {
     setSelectedOption(clickedOption)
   }
@@ -43,15 +49,13 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <Container>
         <Header>
-          <p>
-            Welcome to the awsome Finder App!
-          </p>
+          <p>Welcome to the awsome App! :)</p>
         </Header>
         <Section>
           <Dropdown
-            listBlockHeight={5}
+            passedValue={valueToPass}
             clickHandler={clickHandler}
-            passedValue={passedValue}
+            listBlockHeight={config.listBlockHeight}
           />
         </Section>
         <Footer />

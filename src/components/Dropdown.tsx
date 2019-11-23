@@ -5,7 +5,9 @@ import { findMatch } from '../utils';
 import { data } from '../data';
 
 const Input = styled.input`
-  margin: 3em;
+  margin: 1em;
+  height: 1.5em;
+  font-size: 1em;
   background: khaki;
   color: blue;
   border: 2px solid palevioletred;
@@ -29,24 +31,25 @@ const Dropdown: React.FC<Props> = ({ passedValue, clickHandler, listBlockHeight 
     displayMatchesList: false,
     matches: ['']
   });
-
+  // whenever a new value is passed from the parent
+  // (after a dropdown option had been selected) it's been displayed as an input value
   useEffect(() => {
     setState({
       ...state,
       inputValue: passedValue,
     })
   }, [passedValue]);
-  
+  // handler to process a change event (typing or deleting) in the input
   const changeHandler = (event: any) => {
     const { value } = event.target;
     setState({
       ...state,
-      displayMatchesList: true,
+      displayMatchesList: !!value,
       inputValue: value,
       matches: findMatch(value, data)
     });
   }
-
+  
   const { displayMatchesList, matches} = state;
 
   return (
@@ -58,7 +61,7 @@ const Dropdown: React.FC<Props> = ({ passedValue, clickHandler, listBlockHeight 
           displayMatchesList && matches.length &&
             matches.filter((_, ind) => ind <= listBlockHeight-1)
               .map((match: string, ind: number) =>
-                <ListItem clickHandler={clickHandler} key={ind} match={match} />)
+                <ListItem key={ind} clickHandler={clickHandler} match={match} />)
         }
       </List>
     </Fragment>

@@ -8,18 +8,13 @@ const Li = styled.li`
     color: red;
   }
 `
-
 interface Props {
   match: string;
   key: number;
   clickHandler: (match: string) => void;
 }
 
-const ListItem: React.FC<Props> = (props: Props) => {
-
-  return (
-      <Li onClick={() => props.clickHandler(props.match)}>{ props.match }</Li>
-  )
-}
+const ListItem: React.FC<Props> = ({ match, clickHandler }) =>
+  <Li onClick={() => clickHandler(match)}>{ match }</Li>
 
 export default ListItem;
