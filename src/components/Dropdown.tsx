@@ -22,10 +22,9 @@ const List = styled.ul`
 interface Props {
   listBlockHeight: number;
   passedValue: string;
-  clickHandler: (value: string) => void;
 }
 
-const Dropdown: React.FC<Props> = ({ passedValue, clickHandler, listBlockHeight }) => {
+const Dropdown: React.FC<Props> = ({ passedValue, listBlockHeight }) => {
 
   const [state, setState] = useState({
     inputValue: passedValue,
@@ -62,7 +61,7 @@ const Dropdown: React.FC<Props> = ({ passedValue, clickHandler, listBlockHeight 
           displayMatchesList && matches.length &&
             matches.filter((_, ind) => ind <= listBlockHeight-1)
               .map((match: string, ind: number) =>
-                <ListItem key={ind} clickHandler={clickHandler} match={match} />)
+                <ListItem key={ind} match={match} />)
         }
       </List>
     </Fragment>

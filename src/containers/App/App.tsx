@@ -4,6 +4,7 @@ import ErrorBoundary from '../ErrorBoundary';
 import Dropdown from '../../components/Dropdown';
 import { flex, font, height } from '../../common/styles';
 import { data } from '../../data';
+import { AppContext } from '../../appContext';
 
 const Header = styled.header`
   background-color: #282c34;
@@ -44,6 +45,10 @@ const App: React.FC = () => {
   const clickHandler = (clickedOption: string) => {
     setSelectedOption(clickedOption)
   }
+  const appState = {
+    valueToPass,
+    clickHandler
+  }
 
   return (
     <ErrorBoundary>
@@ -52,11 +57,12 @@ const App: React.FC = () => {
           <p>Welcome to the awsome App! :)</p>
         </Header>
         <Section>
-          <Dropdown
-            passedValue={valueToPass}
-            clickHandler={clickHandler}
-            listBlockHeight={config.listBlockHeight}
-          />
+          <AppContext.Provider value={appState} >
+            <Dropdown
+              passedValue={valueToPass}
+              listBlockHeight={config.listBlockHeight}
+            />
+          </AppContext.Provider>
         </Section>
         <Footer />
       </Container>

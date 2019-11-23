@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { AppContext } from '../appContext';
 
 const Li = styled.li`
   text-align: center;
@@ -11,10 +12,11 @@ const Li = styled.li`
 interface Props {
   match: string;
   key: number;
-  clickHandler: (match: string) => void;
 }
 
-const ListItem: React.FC<Props> = ({ match, clickHandler }) =>
-  <Li onClick={() => clickHandler(match)}>{ match }</Li>
+const ListItem: React.FC<Props> = ({ match }) => {
+  const { clickHandler } = useContext(AppContext);
+  return <Li onClick={() => clickHandler(match)}>{ match }</Li>
+}
 
 export default ListItem;
