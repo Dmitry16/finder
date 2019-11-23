@@ -15,8 +15,8 @@ interface Props {
 }
 
 const ListItem: React.FC<Props> = ({ match }) => {
-  const { clickHandler } = useContext(AppContext);
-  return <Li onClick={() => clickHandler(match)}>{ match }</Li>
+  const { setSelectedOption } = useContext(AppContext);
+  return <Li onClick={() => setSelectedOption(match)}>{ match }</Li>
 }
 
 export default ListItem;

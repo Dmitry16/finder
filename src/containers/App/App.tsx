@@ -40,14 +40,10 @@ const App: React.FC = () => {
   // if no option were selected the initial value is passed
   const initialValue = data && data[0];
   const valueToPass = selectedOption || initialValue;
-  // handler to process the click on a dropdown's displayed option
-  // it's a callback which is passed down to the child as a prop
-  const clickHandler = (clickedOption: string) => {
-    setSelectedOption(clickedOption)
-  }
+
   const appState = {
     valueToPass,
-    clickHandler
+    setSelectedOption
   }
 
   return (
