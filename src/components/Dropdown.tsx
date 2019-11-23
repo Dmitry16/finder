@@ -12,22 +12,27 @@ const Input = styled.input`
   border: 2px solid palevioletred;
   border-radius: 3px;
 `
-
+const List = styled.ul`
+  margin: 0;
+  text-align: center;
+  list-style-type: circle;
+`
 interface Props {
+  listBlockHeight: number;
   initialValue: string;
   clickHandler: (value: string) => void;
 }
 interface State {
-  showMatchesList?: boolean,
+  displayMatchesList?: boolean,
   matches?: string[]
 }
 
-const Dropdown: React.FC<Props> = ({ initialValue, clickHandler }) => {
+const Dropdown: React.FC<Props> = ({ initialValue, clickHandler, listBlockHeight }) => {
 
   const [inputValue, setInputValue] = useState(initialValue);
 
   const [state, setState] = useState({
-    showMatchesList: false,
+    displayMatchesList: false,
     matches: ['']
   });
 
@@ -38,7 +43,7 @@ const Dropdown: React.FC<Props> = ({ initialValue, clickHandler }) => {
   useEffect(() => {
     setState({
       ...state,
-      showMatchesList: true,
+      displayMatchesList: true,
       matches: findMatch(inputValue, data)
     })
   }, [inputValue, findMatch]);
@@ -47,17 +52,20 @@ const Dropdown: React.FC<Props> = ({ initialValue, clickHandler }) => {
     setInputValue(event.target.value);
   }
 
-  const { showMatchesList, matches} = state;
+  const { displayMatchesList, matches} = state;
 
   return (
     <Fragment>
       Start typing your search in:
       <Input type='text' name='dropdown' value={inputValue} onChange={changeHandler} />
-      {
-        showMatchesList && !!matches.length &&
-          matches.map((match: string, ind: number) =>
-            <ListItem clickHandler={clickHandler} key={ind} match={match} />)
-      }
+      <List>
+        {
+          displayMatchesList && matches.length &&
+            matches.filter((_, ind) => ind <= listBlockHeight-1)
+              .map((match: string, ind: number) =>
+                <ListItem clickHandler={clickHandler} key={ind} match={match} />)
+        }
+      </List>
     </Fragment>
   );
 }

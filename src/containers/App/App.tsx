@@ -46,7 +46,11 @@ const App: React.FC = () => {
           </p>
         </Header>
         <Section>
-          <Dropdown initialValue={dropdownInitialValue} clickHandler={clickHandler} />
+          <Dropdown
+            listBlockHeight={5}
+            clickHandler={clickHandler}
+            initialValue={dropdownInitialValue}
+          />
         </Section>
         <Footer />
       </Container>

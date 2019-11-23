@@ -1,11 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const List = styled.ul`
-  margin: 0;
-  text-align: center;
-  list-style-type: circle;
-`
 const Li = styled.li`
   text-align: center;
   cursor: pointer;
