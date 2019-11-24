@@ -34,17 +34,15 @@ const config = {
 }
 
 const App: React.FC = () => {
-  // the application state. it is passed to Dropdown as passedValue prop 
-  const [selectedOption, setSelectedOption] = useState('');
-  // value to be passed to the Dropdown component
-  // if no option were selected the initial value is passed
-  const initialValue = data && data[0];
-  const valueToPass = selectedOption || initialValue;
-
-  const appState = {
-    valueToPass,
-    setSelectedOption
-  }
+  const initialValue = data && data[0] || '';
+  // the application state which is passed to the Context 
+  const [state, setState] = useState({
+    data,
+    inputValue: initialValue,
+    selectedOption: '',
+    displayMatchesList: false,
+    matches: []
+  });
 
   return (
     <ErrorBoundary>
@@ -53,9 +51,8 @@ const App: React.FC = () => {
           <p>Welcome to the awsome App! :)</p>
         </Header>
         <Section>
-          <AppContext.Provider value={appState} >
+          <AppContext.Provider value={{state, setState}} >
             <Dropdown
-              passedValue={valueToPass}
               listBlockHeight={config.listBlockHeight}
             />
           </AppContext.Provider>
