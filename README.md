@@ -12,7 +12,8 @@ The application state is managed in the parent (App component). It recieves the 
 ## On the branch context:
 The code from master is refactored using the react context api.
 
-The unit tests are written with Jest and Enzyme and covers the main functionality.
+## Unit tests
+The unit tests are written with Jest and Enzyme. To start them run `yarn test`.
 
 ## Available Scripts
 

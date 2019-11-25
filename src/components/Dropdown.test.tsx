@@ -16,9 +16,6 @@ describe('<Dropdown />', () => {
       listBlockHeight={5}
     />);
   });
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -35,6 +32,17 @@ describe('<Dropdown />', () => {
   it('has an input', () => {
     expect(wrapper.find('input').length).toBe(1);
   });
+  it('the input has onChange property', () => {
+    expect('onChange' in wrapper.find('input').props()).toBe(true);
+  });
+  it('the onChange property is a function', () => {
+    expect(wrapper.find('input').prop('onChange')).toBeInstanceOf(Function);
+  });
+  // wrapper = shallow(<Dropdown
+  //   passedValue={''}
+  //   clickHandler={() => {}}
+  //   listBlockHeight={5}
+  // />);
   // console.log(wrapper.debug());
 });
 
