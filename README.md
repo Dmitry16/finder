@@ -1,10 +1,16 @@
 ## High Level Design overview
 
-The React Hooks were used in development that permits using react component life cycles and state within functional components.
+React Hooks were used in development that permits using react component life cycles and state within functional components.
 
+There are 2 branches: master and context.
+
+## On the branch master:
 The application state is managed in the parent (App component). It recieves the data from the child (ListItem) via callback function, updates the state and sends the data to the child (Dropdown). The Dropdown component has its own state which is updated when:
   1. user types or deletes in the input field;
   2. a new value to display (passedValue) is passed from the parent.
+
+## On the branch context:
+The code from master is refactored using the react context api.
 
 The unit tests are written with Jest and Enzyme and covers the main functionality.
 
