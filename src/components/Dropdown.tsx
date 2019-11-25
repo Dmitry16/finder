@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useContext, memo } from 'react';
+import React, { Fragment, useContext } from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 import Input from './Input';
@@ -13,12 +13,9 @@ interface Props {
   listBlockHeight: number;
 }
 
-const Dropdown: React.FC<Props> = memo(({ listBlockHeight }) => {
+const Dropdown: React.FC<Props> = (props) => {
 
   const { state } = useContext(AppContext);
-
-  // const renders = useRef(0);
-  // console.log('renders::', renders.current++)
 
   const { displayMatchesList, matches} = state;
 
@@ -29,13 +26,13 @@ const Dropdown: React.FC<Props> = memo(({ listBlockHeight }) => {
       <List>
         {
           displayMatchesList && !!matches.length &&
-            matches.filter((_, ind) => ind <= listBlockHeight-1)
+            matches.filter((_, ind) => ind <= props.listBlockHeight-1)
               .map((match: string, ind: number) =>
                 <ListItem key={ind} match={match} />)
         }
       </List>
     </Fragment>
   );
-});
+};
 
 export default Dropdown;

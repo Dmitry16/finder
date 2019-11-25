@@ -34,11 +34,11 @@ const config = {
 }
 
 const App: React.FC = () => {
-  const initialValue = data && data[0] || '';
+  const initialValue = data && data.length && data[0];
   // the application state which is passed to the Context 
   const [state, setState] = useState({
     data,
-    inputValue: initialValue,
+    inputValue: initialValue || '',
     selectedOption: '',
     displayMatchesList: false,
     matches: []
